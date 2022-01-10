@@ -13,6 +13,11 @@
 # limitations under the License.
 
 
+availableSecrets:
+  secretManager:
+  - versionName: projects/hc-114723e48af3444f90ed743be8b/secrets/TFC_TOKEN/versions/latest
+    env: 'TFC_TOKEN'
+
 steps:
 - id: 'branch name'
   name: 'alpine'
@@ -23,6 +28,8 @@ steps:
       echo "***********************"
       echo "$BRANCH_NAME"
       echo "***********************"
+      echo $$TFC_TOKEN
+  secretEnv: ['TFC_TOKEN']
 
 - id: 'tf init'
   name: 'hashicorp/terraform:1.0.0'
